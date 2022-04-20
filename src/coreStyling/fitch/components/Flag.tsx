@@ -1,5 +1,5 @@
 import {FC, ReactNode} from "react";
-import {useFitchSettings} from "./fitchSettingsContext";
+import {useFitchSettings} from "../fitchSettingsContext";
 
 /**
  * A fitch style flag component

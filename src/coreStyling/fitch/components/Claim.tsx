@@ -1,5 +1,5 @@
 import {FC, ReactChild, ReactNode} from "react";
-import {useFitchSettings} from "./fitchSettingsContext";
+import {useFitchSettings} from "../fitchSettingsContext";
 
 /** A numbered fitch-style claim */
 export const Claim: FC<{

@@ -1,7 +1,7 @@
 import {FC, ReactNode, useCallback, useState} from "react";
-import {AugmentFitchSettings, useFitchSettings} from "./fitchSettingsContext";
-import {fitchHighlightContext} from "./fitchHighlightContext";
-import {IFitchSettings} from "./_types/IFitchSettings";
+import {AugmentFitchSettings, useFitchSettings} from "../fitchSettingsContext";
+import {fitchHighlightContext} from "../fitchHighlightContext";
+import {IFitchSettings} from "../_types/IFitchSettings";
 
 /** A component that sets up the required contexts and wrapper divs for a fitch derivation */
 export const FitchDerivation: FC<{

@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {useFitchHighlightData} from "./fitchHighlightContext";
+import {useFitchHighlightData} from "../fitchHighlightContext";
 
 /** The argumentation for this line, I.e. the applied rule and related lines */
 export const Arg: FC<{
