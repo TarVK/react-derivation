@@ -6,50 +6,28 @@ export const Claim: FC<{
     /** The actual body of the claim */
     children: ReactChild;
     /** The identifier for the claim */
-    id?: ReactNode;
+    id?: string | number;
     /** Additional rationale/justification for the claim */
     comment?: ReactNode;
-}> = ({children, id, comment}) => {
-    const {plain, commentStyle, commentSpacingTop} = useFitchSettings();
-
-    let commentEl = undefined;
-    if (comment) {
-        if (commentStyle == "right") {
-            commentEl = (
-                <div
-                    className={`comment ${commentStyle}`}
-                    css={{
-                        position: "absolute",
-                        left: "100%",
-                        whiteSpace: "pre",
-                        ...(plain ? {} : {color: "grey"}),
-                    }}>
-                    {comment}
-                </div>
-            );
-        } else if (commentStyle == "above") {
-            commentEl = (
-                <div
-                    className={`comment ${commentStyle}`}
-                    css={{
-                        marginTop: commentSpacingTop,
-                        ...(plain ? {} : {color: "grey"}),
-                    }}>
-                    {plain ? "" : "{"}
-                    {comment}
-                    {plain ? "" : "}"}
-                </div>
-            );
-        }
-    }
+    /** A node to show when hovering the claim */
+    hover?: ReactNode;
+}> = ({children, id, comment, hover}) => {
+    const {
+        ClaimCommentComponent,
+        ClaimHoverComponent,
+        ClaimIdComponent,
+        ClaimComponent,
+        ClaimBodyComponent,
+    } = useFitchSettings();
 
     return (
-        <div className="claim" css={{width: "fit-content"}}>
-            {commentEl}
-            <div className="claimID" css={{position: "absolute", left: 0}}>
-                {id}
-            </div>
-            {children}
-        </div>
+        <ClaimComponent ID={id}>
+            {comment && <ClaimCommentComponent>{comment}</ClaimCommentComponent>}
+            {id && <ClaimIdComponent>{id}</ClaimIdComponent>}
+            <ClaimBodyComponent>
+                {children}
+                {hover && <ClaimHoverComponent>{hover}</ClaimHoverComponent>}
+            </ClaimBodyComponent>
+        </ClaimComponent>
     );
 };

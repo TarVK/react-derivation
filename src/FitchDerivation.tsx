@@ -1,5 +1,6 @@
-import {FC, ReactNode} from "react";
+import {FC, ReactNode, useCallback, useState} from "react";
 import {AugmentFitchSettings, useFitchSettings} from "./fitchSettingsContext";
+import {fitchHighlightContext} from "./fitchHighlightContext";
 import {IFitchSettings} from "./_types/IFitchSettings";
 
 /** A component that sets up the required contexts and wrapper divs for a fitch derivation */
@@ -7,28 +8,30 @@ export const FitchDerivation: FC<{
     settings?: Partial<IFitchSettings>;
     children: ReactNode;
 }> = ({settings, children}) => {
+    const [highlight, setHighlight] = useState<{
+        rule?: string;
+        claims: (string | number)[];
+    }>({
+        rule: undefined,
+        claims: [],
+    });
+    const set = useCallback((claims: (string | number)[], rule?: string) => {
+        setHighlight({claims, rule});
+    }, []);
+
     return (
-        <AugmentFitchSettings settings={settings ?? {}}>
-            <FitchDerivationInner>{children}</FitchDerivationInner>
-        </AugmentFitchSettings>
+        <fitchHighlightContext.Provider value={{...highlight, set}}>
+            <AugmentFitchSettings settings={settings ?? {}}>
+                <FitchDerivationInner>{children}</FitchDerivationInner>
+            </AugmentFitchSettings>
+        </fitchHighlightContext.Provider>
     );
 };
 
 /** The inner container of the fitch style derivation */
-export const FitchDerivationInner: FC<{
+const FitchDerivationInner: FC<{
     children: ReactNode;
 }> = ({children}) => {
-    const {paddingLeft, paddingRight} = useFitchSettings();
-    return (
-        <div
-            className="fitchDerivation"
-            css={{
-                position: "relative",
-                paddingLeft,
-                width: "fit-content",
-                paddingRight,
-            }}>
-            {children}
-        </div>
-    );
+    const {FitchDerivationComponent} = useFitchSettings();
+    return <FitchDerivationComponent>{children}</FitchDerivationComponent>;
 };

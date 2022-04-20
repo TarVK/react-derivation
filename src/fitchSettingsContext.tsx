@@ -1,18 +1,26 @@
 import {createContext, FC, ReactNode, useContext} from "react";
+import {createClaim} from "./fitchStyleComponents/createClaim";
+import {createClaimBody} from "./fitchStyleComponents/createClaimBody";
+import {createClaimComment} from "./fitchStyleComponents/createClaimComment";
+import {createClaimHover} from "./fitchStyleComponents/createClaimHover";
+import {createClaimID} from "./fitchStyleComponents/createClaimID";
+import {createFitchDerivation} from "./fitchStyleComponents/createFitchDerivation";
+import {createFlag} from "./fitchStyleComponents/createFlag";
+import {createFlagBody} from "./fitchStyleComponents/createFlagBody";
+import {createFlagPole} from "./fitchStyleComponents/createFlagPole";
 import {IFitchSettings} from "./_types/IFitchSettings";
 
 /** The default fitch settings */
 export const defaultFitchSettings: IFitchSettings = {
-    paddingLeft: 30,
-    paddingRight: 30,
-    flagIndent: 2,
-    flagBodyIndent: 10,
-    flagSpacingTop: 5,
-    flagSpacingBottom: 5,
-    flagStyle: "open",
-    commentSpacingTop: 3,
-    commentStyle: "above",
-    plain: false,
+    ClaimComponent: createClaim(),
+    ClaimIdComponent: createClaimID(),
+    ClaimBodyComponent: createClaimBody(),
+    ClaimHoverComponent: createClaimHover(),
+    ClaimCommentComponent: createClaimComment(),
+    FlagComponent: createFlag(),
+    FlagPoleComponent: createFlagPole(),
+    FlagBodyComponent: createFlagBody(),
+    FitchDerivationComponent: createFitchDerivation(),
 };
 
 /** The react context containing the fitch settings */

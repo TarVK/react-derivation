@@ -1,10 +1,10 @@
 import {FC} from "react";
-import {Arg, Flag, Claim, FitchDerivation} from "react-derivation";
+import {Arg, Flag, Claim, FitchDerivation, createClaim} from "react-derivation";
 
 export const App: FC = () => {
     return (
         <div css={{margin: 40}}>
-            <FitchDerivation settings={{commentStyle: "right"}}>
+            <FitchDerivation>
                 <Flag assumption={<Claim id="1">Bob is cool</Claim>}>
                     <Flag
                         assumption={
@@ -13,7 +13,10 @@ export const App: FC = () => {
                             </Claim>
                         }>
                         <Claim id="3">Bob is lame</Claim>
-                        <Claim id="4" comment={<Arg name="contradiction" on={[1, 3]} />}>
+                        <Claim
+                            id="4"
+                            comment={<Arg name="contradiction" on={[1, 3]} />}
+                            hover={"Oranges"}>
                             False
                         </Claim>
                     </Flag>
