@@ -1,5 +1,5 @@
-import {FC} from "react";
-import {useFitchHighlightData} from "../fitchHighlightContext";
+import {FC, useMemo} from "react";
+import {useHighlightData} from "../../highlightContext";
 
 /** The argumentation for this line, I.e. the applied rule and related lines */
 export const Arg: FC<{
@@ -8,11 +8,11 @@ export const Arg: FC<{
     /** The ids of the claims it was applied on */
     on?: (string | number)[];
 }> = ({name, on = []}) => {
-    const {set: setHighlight} = useFitchHighlightData();
-    const itemEls = on.map((item, id) => (
+    const {set: setHighlight} = useHighlightData();
+    const itemEls = on.map((item, index) => (
         <span
-            key={id}
-            onMouseEnter={() => setHighlight([item])}
+            key={index}
+            onMouseEnter={() => setHighlight([{id: item, index}], name, "premise")}
             onMouseLeave={() => setHighlight([])}>
             ({item})
         </span>
@@ -22,11 +22,12 @@ export const Arg: FC<{
         if (i == 1) return [item, " and ", ...tail];
         else return [item, ", ", ...tail];
     }, []);
+    const allPremises = useMemo(() => on.map((item, index) => ({id: item, index})), []);
 
     return (
         <>
             <span
-                onMouseEnter={() => setHighlight(on, name)}
+                onMouseEnter={() => setHighlight(allPremises, name, "rule")}
                 onMouseLeave={() => setHighlight([])}>
                 {name}
                 {itemEls.length > 0 ? " on " : ""}

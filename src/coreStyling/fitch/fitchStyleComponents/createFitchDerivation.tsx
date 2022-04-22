@@ -1,5 +1,5 @@
 import {CSSObject} from "@emotion/react";
-import {IWrapperComp} from "../_types/IWrapperComp";
+import {IWrapperComp} from "../../_types/IWrapperComp";
 
 /**
  * Creates the component with a certain fitch derivation style to be specified in the derivation settings

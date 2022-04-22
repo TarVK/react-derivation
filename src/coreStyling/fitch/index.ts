@@ -1,4 +1,4 @@
 export * from "./fitchSettingsContext";
-export * from "./fitchHighlightContext";
+export * from "../highlightContext";
 export * from "./components";
 export * from "./fitchStyleComponents";

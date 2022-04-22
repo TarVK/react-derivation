@@ -1,5 +1,5 @@
 import {CSSObject} from "@emotion/react";
-import {useFitchHighlightData} from "../fitchHighlightContext";
+import {useHighlightData} from "../../highlightContext";
 import {IClaimComp} from "../_types/IClaimComp";
 
 /**
@@ -18,18 +18,22 @@ export const createClaim =
         css?: CSSObject;
     } = {}): IClaimComp =>
     ({children, ID}) => {
-        const {claims} = useFitchHighlightData();
-        const highlight = claims.find(item => item == ID);
+        const {claims} = useHighlightData();
+        const highlight = claims.find(item => item.id == ID);
         return (
             <div
                 className={`claim ${highlight ? "highlight" : ""}`}
                 css={{
                     width: "fit-content",
-                    "&.highlight .claimBodyHighlight": {
-                        boxShadow: "0 1px 2px 2px #0000005e",
-                        left: 0,
-                        right: 0,
-                    },
+                    ...(skipHighlight
+                        ? {}
+                        : {
+                              "&.highlight .claimBodyHighlight": {
+                                  boxShadow: "0 1px 2px 2px #0000005e",
+                                  left: 0,
+                                  right: 0,
+                              },
+                          }),
                     ...css,
                 }}>
                 {children}

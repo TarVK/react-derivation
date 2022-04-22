@@ -1,5 +1,5 @@
 import {IClaimComp} from "./IClaimComp";
-import {IWrapperComp} from "./IWrapperComp";
+import {IWrapperComp} from "../../_types/IWrapperComp";
 
 export type IFitchSettings = {
     /** The component to use for claim styling */

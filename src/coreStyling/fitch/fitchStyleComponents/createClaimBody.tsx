@@ -1,6 +1,6 @@
 import {CSSObject} from "@emotion/react";
 import {useState} from "react";
-import {IWrapperComp} from "../_types/IWrapperComp";
+import {IWrapperComp} from "../../_types/IWrapperComp";
 
 /**
  * Creates the component with a certain claim body style to be specified in the derivation settings

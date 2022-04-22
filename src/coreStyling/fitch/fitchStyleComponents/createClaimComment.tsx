@@ -1,6 +1,6 @@
 import {CSSObject} from "@emotion/react";
 import {ICommentStyle} from "../_types/ICommentStyle";
-import {IWrapperComp} from "../_types/IWrapperComp";
+import {IWrapperComp} from "../../_types/IWrapperComp";
 
 /**
  * Creates the component with a certain comment style to be specified in the derivation settings

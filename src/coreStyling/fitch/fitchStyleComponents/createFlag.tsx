@@ -1,6 +1,6 @@
 import {CSSObject} from "@emotion/react";
 import {IFlagStyle} from "../_types/IFlagStyle";
-import {IWrapperComp} from "../_types/IWrapperComp";
+import {IWrapperComp} from "../../_types/IWrapperComp";
 
 /**
  * Creates the component with a certain flag style to be specified in the derivation settings
